@@ -393,22 +393,22 @@ module IslamicCalendarModule {
 
     }
 
-	function getDatesFromTimes(times) {
+	function getDatesFromTimes(calendar, times) {
 //System.println(times);		
 		for (var i = 0; i < times.size(); i++) {
-			times[i] = getDateFromTime(times[i]);
+			times[i] = getDateFromTime(calendar, times[i]);
 		}
 		
 		return times;
 	}
 
-	function getDateFromTime(time) {
+	function getDateFromTime(calendar, time) {
 		if (null == time) {
 			return null;
 		}
 		var calculatedTime = Maths.fixhour(time);
 
-		var timeInfo = Time.Gregorian.info(Toybox.Time.now(), Toybox.Time.FORMAT_SHORT);
+		var timeInfo = Time.Gregorian.info(calendar, Toybox.Time.FORMAT_SHORT);
 					 
 		var hours = calculatedTime.toNumber();
 		calculatedTime -= hours;
